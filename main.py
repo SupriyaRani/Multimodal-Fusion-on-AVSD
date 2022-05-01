@@ -9,7 +9,7 @@ from itertools import chain
 import tarfile
 from argparse import ArgumentParser
 from utils.meta.dataset import get_dataset, build_input_from_segments
-from utils.meta.VideoGPT2 import *
+from VideoGPT2 import *
 from utils.meta.train import SPECIAL_TOKENS, SPECIAL_TOKENS_DICT
 
 if __name__ =="__main__":
@@ -26,6 +26,6 @@ if __name__ =="__main__":
     tokenizer = tokenizer_class.from_pretrained(args.model_checkpoint)
     tokenizer.add_special_tokens(SPECIAL_TOKENS_DICT)
     #logging.info('Loading test data from ' + args.test_set)
-    test_data = json.load(open('E:/Supriya/Final project/AVSD/data/dataset/DSTC7-AVSD/OfficialData/train_set4DSTC7-AVSD.json','r'))
+    test_data = json.load(open(args.test_set,'r'))
     test_dataset = get_dataset(tokenizer, args.test_set, undisclosed_only=False, n_history=args.max_history)
     print(test_dataset)
